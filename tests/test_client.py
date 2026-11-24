@@ -600,7 +600,7 @@ def test_availability_get_maps_onto_agent_id_date_timezone():
 def test_the_user_agent_names_the_package_and_the_version_in_pyproject():
     pyproject = (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text()
     assert re.search(r'^name = "movoice"$', pyproject, re.M)
-    assert movoice.__version__ == "0.1.0"
+    assert movoice.__version__ == "0.1.1"
     client, seen = stub([ok([])])
     client.agents.list()
     assert seen[0].headers["User-Agent"] == f"movoice-python/{movoice.__version__}"
@@ -618,3 +618,15 @@ def test_the_client_is_a_context_manager_and_does_not_close_a_client_it_was_give
     owned = Movoice(KEY)
     owned.close()
     assert owned.http._client.is_closed
+
+
+@pytest.mark.parametrize(
+    "key",
+    ["   ", "mv_pk_" + "b" * 32],
+    ids=["no key", "publishable key"],
+)
+def test_key_errors_point_at_the_real_developer_page(monkeypatch, key):
+    monkeypatch.delenv("MOVOICE_API_KEY", raising=False)
+    with pytest.raises(MovoiceError) as caught:
+        Movoice(key)
+    assert "https://app.movoice.ai/admin/developer" in str(caught.value)

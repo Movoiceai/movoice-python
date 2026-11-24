@@ -60,7 +60,7 @@ class HttpClient:
         key = (api_key or "").strip()
         if not key:
             raise MovoiceError(
-                "No API key. Create one at https://app.movoice.ai/developer and pass it as "
+                "No API key. Create one at https://app.movoice.ai/admin/developer and pass it as "
                 "Movoice(api_key=...) or set MOVOICE_API_KEY.",
                 code="UNAUTHORIZED",
             )
@@ -68,7 +68,7 @@ class HttpClient:
             raise MovoiceError(
                 "That is a publishable key. Publishable keys (mv_pk_) only work with the chat widget "
                 "in a browser and cannot call the API. Use a secret key (mv_live_ or mv_test_) from "
-                "https://app.movoice.ai/developer, and keep it on your server.",
+                "https://app.movoice.ai/admin/developer, and keep it on your server.",
                 code="FORBIDDEN",
             )
         self._api_key = key

@@ -9,7 +9,7 @@ Python 3.9+. One dependency ([httpx](https://www.python-httpx.org)). Fully typed
 pip install movoice
 ```
 
-> **Rolling out:** the call-result fields `id`, `context_data` and `agent`, and giving an agent a phone number with `agents.update(agent_id, phone_number=...)`, arrive with the December 2026 Movoice release. Until then they are already on Movoice's testing server.
+> **Rolling out:** the call-result fields `id`, `context_data` and `agent`, and giving an agent a phone number with `agents.update(agent_id, phone_number=...)`, are live on Movoice's testing server and reach app.movoice.ai with the next Movoice release.
 
 ## Call a lead from your CRM and get the result back
 
