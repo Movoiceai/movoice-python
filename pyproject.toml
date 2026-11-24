@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "movoice"
+dynamic = ["version"]
+description = "The official Python client for the Movoice AI API: voice agents, calls, contacts, bookings, SMS, WhatsApp and webhook verification"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Movoice AI", email = "care@movoice.ai" }]
+keywords = [
+  "movoice",
+  "voice-ai",
+  "voice-agents",
+  "telephony",
+  "sms",
+  "whatsapp",
+  "api-client",
+  "sdk",
+  "webhooks",
+  "crm",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Communications :: Telephony",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+dependencies = ["httpx>=0.25,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://docs.movoice.ai"
+Documentation = "https://docs.movoice.ai"
+"API reference" = "https://app.movoice.ai/api/v1/openapi.json"
+
+[tool.hatch.version]
+path = "src/movoice/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/movoice"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/movoice", "tests", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
